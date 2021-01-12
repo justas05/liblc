@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdlib.h                                        :+:      :+:    :+:   */
+/*   ft_print_bytes.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbooke <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STDLIB_H
-# define FT_STDLIB_H
+#include "ft_stdio.h"
+#include <stddef.h>
 
-# include <stddef.h>
+void		ft_print_bytes(void *addr, size_t size, char sep)
+{
+	size_t	i;
 
-int					ft_abs(int n);
-long long			ft_strtoll(const char *buf, int base);
-int					ft_nbr_len(int num);
-char				*ft_itoa(int num);
-int					ft_atoi(const char *nptr);
-void				*ft_calloc(size_t nmemb, size_t size);
-void				*ft_realloc(void *ptr, size_t old_size, size_t size);
-void				ft_swap(int *a, int *b);
-void				ft_swapc(char *a, char *b);
-
-#endif
+	if (!addr)
+		return ;
+	i = 0;
+	while (i < size)
+	{
+		ft_print_hex_byte(addr + i, 0);
+		if (i + 1 != size)
+			write(1, &sep, 1);
+		++i;
+	}
+}

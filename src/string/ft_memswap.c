@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdlib.h                                        :+:      :+:    :+:   */
+/*   ft_memswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbooke <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 02:41:29 by hbooke            #+#    #+#             */
-/*   Updated: 2020/11/04 11:07:59 by hbooke           ###   ########.fr       */
+/*   Updated: 2020/10/29 02:41:29 by hbooke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STDLIB_H
-# define FT_STDLIB_H
+#include "ft_stdlib.h"
 
-# include <stddef.h>
+#include <stdlib.h>
+#include <stddef.h>
 
-int					ft_abs(int n);
-long long			ft_strtoll(const char *buf, int base);
-int					ft_nbr_len(int num);
-char				*ft_itoa(int num);
-int					ft_atoi(const char *nptr);
-void				*ft_calloc(size_t nmemb, size_t size);
-void				*ft_realloc(void *ptr, size_t old_size, size_t size);
-void				ft_swap(int *a, int *b);
-void				ft_swapc(char *a, char *b);
+void	*ft_memswap(void *dest, void *src, size_t num)
+{
+	char	*from;
+	char	*to;
 
-#endif
+	from = (char *)src;
+	to = (char *)dest;
+	if (from < to)
+	{
+		from += num - 1;
+		to += num - 1;
+		while (num)
+		{
+			ft_swapc(from--, to--);
+			--num;
+		}
+	}
+	else if (from > to)
+	{
+		while (num)
+		{
+			ft_swapc(from++, to++);
+			--num;
+		}
+	}
+	return (dest);
+}

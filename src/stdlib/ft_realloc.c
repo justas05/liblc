@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbr_len.c                                       :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbooke <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 13:38:24 by hbooke            #+#    #+#             */
-/*   Updated: 2020/07/15 23:25:14 by hbooke           ###   ########.fr       */
+/*   Created: 2020/11/22 21:08:28 by hbooke            #+#    #+#             */
+/*   Updated: 2020/11/22 21:08:28 by hbooke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_nbr_len(int num)
+void		*ft_realloc(void *ptr, size_t old_size, size_t size)
 {
-	int len;
+	void	*res;
 
-	len = 1;
-	while ((num /= 10))
-		++len;
-	return (len);
+	res = NULL;
+	if (!size)
+		free(ptr);
+	else if (!ptr)
+		res = malloc(size);
+	else if (size <= old_size)
+		res = ptr;
+	else if (ptr && size > old_size)
+	{
+		res = malloc(size);
+		if (res)
+		{
+			ft_memmove(res, ptr, old_size);
+			free(ptr);
+		}
+	}
+	return (res);
 }

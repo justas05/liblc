@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbr_len.c                                       :+:      :+:    :+:   */
+/*   ft_print_hex_byte.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbooke <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/15 13:38:24 by hbooke            #+#    #+#             */
-/*   Updated: 2020/07/15 23:25:14 by hbooke           ###   ########.fr       */
+/*   Created: 2020/11/22 21:08:28 by hbooke            #+#    #+#             */
+/*   Updated: 2020/11/22 21:08:28 by hbooke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_nbr_len(int num)
-{
-	int len;
+#include "ft_stdio.h"
 
-	len = 1;
-	while ((num /= 10))
-		++len;
-	return (len);
+void	ft_print_hex_byte(unsigned char c, int big)
+{
+	ft_print_hex_digit(c >> 4, big);
+	ft_print_hex_digit(c, big);
 }
