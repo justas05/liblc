@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_avl_tree.h                                      :+:      :+:    :+:   */
+/*   btree_apply_prefix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbooke <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/29 02:41:29 by hbooke            #+#    #+#             */
-/*   Updated: 2020/11/04 11:07:59 by hbooke           ###   ########.fr       */
+/*   Created: 2020/07/31 18:54:53 by hbooke            #+#    #+#             */
+/*   Updated: 2020/07/31 22:07:54 by hbooke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_AVL_TREE_H
-# define FT_AVL_TREE_H
+#include "ft_btree.h"
 
-#endif
+void	btree_apply_prefix(t_btree *root, void (*applyf)(void *))
+{
+	if (!root)
+		return ;
+	applyf(root->item);
+	btree_apply_prefix(root->left, applyf);
+	btree_apply_prefix(root->right, applyf);
+}
